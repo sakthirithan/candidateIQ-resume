@@ -1,0 +1,176 @@
+# CandidateIQ — AI-Powered Candidate Profiling & Recruitment Intelligence Platform
+
+> **CandidateIQ** is a next-generation, AI-driven MERN recruitment platform designed to transform talent acquisition through automated resume parsing, multi-dimensional skill gap intelligence, explainable candidate-job matching, AI mock interview scorecards, and a natural language recruitment assistant co-pilot.
+
+---
+
+## 🌟 Key Highlights
+
+- **22 Complete Modules**: End-to-end candidate and recruiter workflows implemented with zero static UI elements.
+- **Explainable AI Engine**: Transparent, non-biased candidate intelligence profiling across 6 normalized metrics (Technical, Job Match, Interview, Behavioural, Resume, Experience) with evidence callouts.
+- **Role-Based Workspaces**: Tailored experiences for Candidates, Recruiters/HR Managers, and System Admins.
+- **Centralized Service Architecture**: Decoupled service layer (`client/src/services/mockApi/`) allowing seamless transition from mock services to Express/MongoDB backend APIs.
+- **Command Palette Search**: Global search overlay (`Cmd+K` / `Ctrl+K`) debounced across Candidates, Job Requisitions, Skill Matrix, and Applications.
+
+---
+
+## 🚀 Complete Module Architecture (Modules 01 – 22)
+
+### 🧑‍💻 Candidate Modules
+- **Module 01 — Landing Page**: Public SaaS marketing hub featuring hero section, feature breakdown, role switcher preview, and interactive sandbox demo launcher.
+- **Module 03 — Candidate Profile**: 9 isolated profile sections (Contact, Summary, Experience, Education, Projects, Certifications, Socials, Skills, Preferences) with dedicated CRUD modals.
+- **Module 04 — Resume Intelligence**: Multi-stage resume parser simulation (5MB validation, drag-and-drop dropzone, Accept/Edit/Reject extraction review).
+- **Module 05 — Skill Intelligence**: 9 skill categories, interactive Radar chart, evidence tags, confidence score calculation, and skill CRUD modals.
+- **Module 07 — Job Discovery**: Multi-field search and filters (Role, Location, Experience, Match Score), job detail drawer, and 1-click application submission.
+- **Module 08 — Application Tracker**: Real-time candidate application status pipeline (`Applied` ➔ `Under Review` ➔ `Shortlisted` ➔ `Interview` ➔ `Selected` / `Rejected`) with visual timeline.
+- **Module 09 — Job Matching View**: Multi-dimensional matching breakdown (Technical, Skills, Experience, Education, Projects) with evidence callouts.
+- **Module 10 — AI Mock Interview Room**: Step-by-step interview session state machine, difficulty selectors, speech voice simulation, and question answer recorder.
+- **Module 11 — Interview Evaluation Analytics**: 6-metric objective evaluation (Technical, Relevance, Depth, Problem Solving, Communication, Behavioural) with question-by-question analytics.
+- **Module 12 — Skill Gap Intelligence**: Compares candidate skills against target job requirements, classifying skills into 3 tiers (STRONG, MODERATE, MISSING) with action plan links.
+
+### 💼 Recruiter Modules
+- **Module 06 — Job Management**: Recruiter Job CRUD, multi-step Publish workflow (`Draft` ➔ `Review` ➔ `Publish`), status toggling, and applicant counter.
+- **Module 13 — Candidate Intelligence Profile**: Single source of truth candidate profile integrating 9 data sources into an overall score (84/100) and 7 detailed intelligence pillars.
+- **Module 14 — Recruiter Command Dashboard**: Operational metric cards computed dynamically from central data, recruitment funnel (Applied ➔ Review ➔ Shortlist ➔ Interview ➔ Hire), and Recharts visual analytics.
+- **Module 15 — Candidate Pool Management**: Exploration desk with search, 6 multi-field filters, sorting, candidate detail cascade tabs, and status pipeline actions.
+- **Module 16 — Candidate Comparison Matrix**: Side-by-side comparison matrix table evaluating 3 candidates across 6 metrics with explainable evidence cards.
+- **Module 17 — AI Recruitment Assistant**: Natural language talent search co-pilot executing 4 core intent workflows (Skill Search, Leaderboards, Score Explainability, Pipeline Status).
+
+### ⚙️ Supporting Platform & Administration
+- **Module 02 — Auth & Subscriptions**: Candidate Free registration, Recruiter authentication, and interactive ₹1 HR Demo Subscription payment flow.
+- **Module 18 — Admin Management**: System administration desk with operational counts, user management CRUD (Create, Read, Update, Deactivate, Delete), and system activity logs.
+- **Module 19 — Notifications & Activity**: Supporting module connecting actions across modules to a central notification store (`notificationService.js`) with live topbar unread badge and drawer.
+- **Module 20 — Shared Settings**: Role-customized settings tabs for Candidate (Profile, Notifications, Privacy, Account), Recruiter (Company, Notifications, Preferences, Account), and Admin (System Preferences, Account).
+- **Module 21 — Global Search**: Debounced search palette (`globalSearchService.js`) querying Candidates, Jobs, Skills, and Applications with direct navigation.
+- **Module 22 — Global UI/UX States**: Unified UI state primitives (`LoadingState.jsx`, `EmptyState.jsx`, `ConfirmModal.jsx`, `ErrorBoundary.jsx`).
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies Used |
+| :--- | :--- |
+| **Frontend UI** | React 18 (Vite), Tailwind CSS, Lucide React Icons, Recharts, Outfit & Inter Typography |
+| **State & Services** | Centralized Mock Data Layer (`mockCandidateService`, `mockJobService`, `mockApplicationService`, `matchingService`, `interviewService`, `analyticsService`, `notificationService`, `globalSearchService`) |
+| **Backend API (MERN)** | Node.js, Express.js, MongoDB (Mongoose Schemas & Controllers) |
+| **Design System** | SaaS HSL Slate/Indigo/Purple Design System (`.saas-card`, `.ai-card-glow`, `.btn-primary`, `.btn-ai`, `.input-saas`, `.badge-pill`) |
+
+---
+
+## 📂 Project Directory Structure
+
+```
+CandidateIQ/
+├── client/                             # Frontend React (Vite) Application
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── candidate/              # Candidate Modules (M03, M04, M05, M07, M08, M09, M10, M11, M12)
+│   │   │   ├── recruiter/              # Recruiter Modules (M06, M13, M14, M15, M16, M17)
+│   │   │   ├── admin/                  # System Admin Module (M18)
+│   │   │   ├── common/                 # Shell & Shared UI States (M19, M20, M21, M22)
+│   │   │   ├── auth/                   # Auth & Subscription Modals (M02)
+│   │   │   ├── demo/                   # Interactive Sandbox Tour
+│   │   │   └── LandingPage.jsx         # Public SaaS Hero & Marketing (M01)
+│   │   ├── services/
+│   │   │   ├── mockApi/                # Central Mock Services & Business Logic
+│   │   │   └── api.js                  # Axios REST API Bridge
+│   │   ├── data/                       # Seed Datasets (Candidates, Jobs, Applications, Interviews)
+│   │   ├── utils/                      # Auth Helpers & LocalStorage Storage Logic
+│   │   └── App.jsx                     # Global Workspace Frame & Route Switcher
+│   └── package.json
+├── server/                             # Backend Express & MongoDB API Architecture
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   └── server.js
+│   └── package.json
+└── README.md
+```
+
+---
+
+## 🔄 End-to-End Recruitment Workflow
+
+```
+                   CANDIDATE WORKFLOW
+                          │
+                   Register / Login
+                          │
+                Complete Profile & Resume
+                          │
+               Extract Skills to Matrix
+                          │
+                Browse & Apply for Jobs
+                          │
+              Candidate-Job AI Match Engine
+                          │
+               Complete AI Mock Interview
+                          │
+              Interview Analytics & Skill Gap
+                          │
+                          ▼
+                   RECRUITER WORKFLOW
+                          │
+                Recruiter Command Center
+                          │
+                Create Requisition / Job
+                          │
+               Explore Candidate Pool Desk
+                          │
+             Review Candidate Intelligence Profile
+                          │
+               Side-by-Side Candidate Matrix
+                          │
+             AI Recruitment Assistant Queries
+                          │
+             HUMAN DECISION (Shortlist / Reject)
+```
+
+---
+
+## 💻 Getting Started & Local Setup
+
+### Prerequisites
+- **Node.js**: `v18.x` or higher
+- **npm**: `v9.x` or higher
+
+### Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/sakthirithan/CandidateIQ.git
+   cd CandidateIQ
+   ```
+
+2. **Install Frontend Dependencies**:
+   ```bash
+   cd client
+   npm install
+   ```
+
+3. **Start the Frontend Development Server**:
+   ```bash
+   npm run dev
+   ```
+   Open your browser at `http://localhost:5173`.
+
+4. **Build for Production**:
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 🛡️ Responsible AI & Compliance
+
+CandidateIQ follows strict **Responsible AI** guidelines:
+- **Explainable Metrics**: All candidate scores provide clear evidence callouts explaining why a candidate scored high or low.
+- **Non-Biased Evaluation**: Scoring strictly evaluates verified technical skills, experience depth, behavioral evidence, and interview relevance—excluding protected personal attributes.
+- **Candidate Consent**: Explicit privacy toggles for anonymized screening mode and profile discoverability.
+
+---
+
+## 📜 License
+
+This project is released under the [MIT License](LICENSE).
