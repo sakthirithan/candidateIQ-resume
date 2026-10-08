@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CandidateIQ | AI-Driven Candidate Profiling & Recruitment SaaS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Mona Sans"', 'Inter', 'system-ui', 'sans-serif'],
+              outfit: ['Outfit', 'sans-serif'],
+            },
+            colors: {
+              dark: {
+                200: '#475467',
+              },
+              'light-blue': {
+                100: '#c1d3f81a',
+                200: '#a7bff14d',
+              },
+              badge: {
+                green: '#d5faf1',
+                red: '#f9e3e2',
+                yellow: '#fceed8',
+                'green-text': '#254d4a',
+                'red-text': '#752522',
+                'yellow-text': '#73321b',
+              },
+              brand: {
+                50: '#f5f7fc',
+                100: '#e0effe',
+                500: '#606beb',
+                600: '#4957eb',
+                700: '#1e40af',
+                900: '#101828',
+              },
+              cq: {
+                bg: '#f5f7fc',
+                surface: '#ffffff',
+                primary: '#606beb',
+                'primary-start': '#8e98ff',
+                'primary-end': '#606beb',
+              }
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-[#f5f7fc] text-[#101828] font-sans antialiased selection:bg-[#606beb] selection:text-white min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
